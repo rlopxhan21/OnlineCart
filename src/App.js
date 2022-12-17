@@ -18,15 +18,15 @@ function App() {
   useEffect(() => {
     dispatch(fetchCartData());
   }, []);
-  console.log(cart);
 
   useEffect(() => {
     if (isInitial) {
       isInitial = false;
       return;
     }
-
-    dispatch(sendCartData(cart));
+    if (cart.changed) {
+      dispatch(sendCartData(cart));
+    }
   }, [cart, dispatch]);
 
   return (
